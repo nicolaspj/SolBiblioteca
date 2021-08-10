@@ -13,5 +13,20 @@ namespace Logica
         {
             Datos.Pais.Agregar(pais);
         }
+
+        public void Modifica ( Entidades.Pais pais)
+        {
+            Datos.Pais.Modificar(pais);
+        }
+
+        public void BorrarPais( int id)
+        {
+            Datos.Pais.BorraPais(id);
+        }
+
+        public List<Entidades.Pais> TraerTodos()
+        {
+           return Datos.Pais.TraerTodos();
+        }
     }
 }

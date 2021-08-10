@@ -21,5 +21,47 @@ namespace Datos
             objConexion.Close();
 
         }
+
+        public static List<Entidades.Pais> TraerTodos()
+         {
+            List<Entidades.Pais> lista = new List<Entidades.Pais>();
+            SqlDataReader dr;
+            SqlConnection objCon = new SqlConnection(Conexion.strConexion);
+            SqlCommand objCom = new SqlCommand("Select * from pais", objCon);
+            objCon.Open();
+            dr = objCom.ExecuteReader();
+            while (dr.Read())
+            {
+                Entidades.Pais a = new Entidades.Pais();
+                a.Id = Convert.ToInt32(dr["Id"]);
+                a.Nombre = dr["Nombre"].ToString();
+                lista.Add(a);
+            }
+            objCon.Close();
+            return lista;
+        }
+
+        public static void Modificar(Entidades.Pais pais)
+        {
+           string strSQL = " Update Pais set Nombre = ' " +pais.Nombre+ " 'where id=" + pais.Id;
+            SqlConnection objCon = new SqlConnection(Conexion.strConexion);
+            SqlCommand objCom = new SqlCommand(strSQL, objCon);
+            objCon.Open();
+            objCom.ExecuteNonQuery();
+            objCon.Close();
+
+
+        }
+
+        public static void BorraPais(int id)
+        {
+            string strSQL = " delete Pais where id= " + id;
+            SqlConnection objCon = new SqlConnection(Conexion.strConexion);
+            SqlCommand objCom = new SqlCommand(strSQL, objCon);
+            objCon.Open();
+            objCom.ExecuteNonQuery();
+            objCon.Close();
+
+        }
     }
 }

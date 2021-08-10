@@ -15,7 +15,7 @@ namespace Datos
             public static void Agregar(Entidades.Autor autor)
         {
             string strSQL = @"Insert Autores(Apellido,Nombre,FechaNacimiento,IdPais)
-                              values(@Apellido,@Nombre,@FechaNacimiento,@IdPais)";
+                              Values(@Apellido,@Nombre,@FechaNacimiento,@IdPais)";
             SqlConnection objConexion = new SqlConnection(Conexion.strConexion);
             SqlCommand objCom = new SqlCommand(strSQL, objConexion);
             objCom.CommandType = CommandType.StoredProcedure;
