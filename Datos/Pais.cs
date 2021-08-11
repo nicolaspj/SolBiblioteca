@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace Datos
 {
@@ -16,10 +17,30 @@ namespace Datos
             SqlCommand objCom = new SqlCommand(strSQL, objConexion);
             //params
             objCom.Parameters.AddWithValue("@Nombre", pais.Nombre);
-            objConexion.Open();
-            objCom.ExecuteNonQuery();
-            objConexion.Close();
+            
+            try
+            {
+                objConexion.Open();
+                objCom.ExecuteNonQuery();
+                
+             }
+            catch (SqlException)
+            {
+                throw new Exception("Error en la conexion");
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la capa de datos");
 
+            }
+            finally
+            {
+                if (objConexion.State == ConnectionState.Open)
+                {
+                    objConexion.Close();
+                }           
+            }
+            
         }
 
         public static List<Entidades.Pais> TraerTodos()

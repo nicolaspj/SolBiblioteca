@@ -11,12 +11,30 @@ namespace Logica
     {
         public void Agregar (Entidades.Pais pais)
         {
-            Datos.Pais.Agregar(pais);
+            try
+            {
+                Datos.Pais.Agregar(pais);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message); 
+            }
+            
         }
 
         public void Modifica ( Entidades.Pais pais)
         {
-            Datos.Pais.Modificar(pais);
+            try
+            {
+                Datos.Pais.Modificar(pais);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void BorrarPais( int id)

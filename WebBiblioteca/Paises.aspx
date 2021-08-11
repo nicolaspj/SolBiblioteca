@@ -17,6 +17,8 @@
         
         </asp:GridView>
        
+        <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
+        
        
     </div>
 

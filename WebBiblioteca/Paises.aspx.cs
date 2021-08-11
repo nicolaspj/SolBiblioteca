@@ -23,10 +23,19 @@ namespace WebBiblioteca
 
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
-            Entidades.Pais objEntidad = new Entidades.Pais();
-            objEntidad.Nombre = txtNombre.Text;
-            objLogica.Agregar(objEntidad);
-            TraerPaises();
+            try
+            {
+                Entidades.Pais objEntidad = new Entidades.Pais();
+                objEntidad.Nombre = txtNombre.Text;
+                objLogica.Agregar(objEntidad);
+                TraerPaises();
+            }
+            catch (Exception ex )
+            {
+                txtNombre.Text = " ";
+                lblMensaje.Text = ex.Message; 
+            }
+            
         }
 
         protected void gvPaises_SelectedIndexChanged(object sender, EventArgs e)
@@ -39,11 +48,20 @@ namespace WebBiblioteca
 
         protected void btnModif_Click(object sender, EventArgs e)
         {
-            Entidades.Pais objEntidad= new Entidades.Pais();
-            objEntidad.Id = Convert.ToInt32(lblId.Text);
-            objEntidad.Nombre = txtNombre.Text;
-            objLogica.Modifica(objEntidad);
-            TraerPaises();
+            try
+            {
+                Entidades.Pais objEntidad = new Entidades.Pais();
+                objEntidad.Id = Convert.ToInt32(lblId.Text);
+                objEntidad.Nombre = txtNombre.Text;
+                objLogica.Modifica(objEntidad);
+                TraerPaises();
+            }
+            catch (Exception ex)
+            {
+                txtNombre.Text = " ";
+                lblMensaje.Text= ex.Message;
+            }
+
         }
 
         protected void btnBorrar_Click(object sender, EventArgs e)
